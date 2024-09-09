@@ -7,9 +7,10 @@ import {
     ScrollView,
     TouchableOpacity, 
     TextInput,
-    Dimensions
+    Dimensions,
  } from "react-native";
- import { useState } from "react";
+ import { useState} from "react";
+
 export default function SearchTour({navigation}){
     const [dropDown, setDropDown] = useState(false);
     const showDropDown = () => {
@@ -32,7 +33,7 @@ export default function SearchTour({navigation}){
         overlay:{
             padding: 10,
             position: 'absolute',
-            top: 0,
+            top: 30,
             left: 0,
             width: Dimensions.get('window').width, // Set overlay width to screen width
             height: Dimensions.get('window').height, // Set overlay height to screen height
@@ -40,9 +41,11 @@ export default function SearchTour({navigation}){
             zIndex: 10
         },
     })
+    const navigateToTour = () =>{
+        navigation.navigate('Tour');
+    }
     return(
         <SafeAreaView style={{backgroundColor: '#000', flex: 1}}>
-            <ScrollView>
                 <View style={styles.header}>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -85,7 +88,11 @@ export default function SearchTour({navigation}){
                             source={require('../assets/search.png')}
                             />
                         </View>
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10, overflow: 'hidden'}}>
+                        <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={{flexDirection: 'row', alignItems: 'center',}}
+                         style={{marginTop: 10}}>
                             <TouchableOpacity style={{backgroundColor: '#3F4445', padding: 10, borderRadius: 100, alignItems: 'center', margin: 5}}>
                                 <Text style={{color: '#fff'}}>#beach</Text>
                             </TouchableOpacity>
@@ -104,7 +111,7 @@ export default function SearchTour({navigation}){
                             <TouchableOpacity style={{backgroundColor: '#3F4445', padding: 10, borderRadius: 100, alignItems: 'center', margin: 5}}>
                                 <Text style={{color: '#fff'}}>#tour</Text>
                             </TouchableOpacity>
-                        </View>
+                        </ScrollView>
                     </View>
                 </View>
                 {dropDown && (
@@ -145,7 +152,7 @@ export default function SearchTour({navigation}){
                                     </View>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={navigateToTour}>
                                 <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 15, marginBottom: 15}}>
                                     <View style={{backgroundColor: '#FF61D3', padding: 15, borderRadius: 100, maxWidth: 50,}}>
                                         <Image
@@ -171,6 +178,7 @@ export default function SearchTour({navigation}){
                             </TouchableOpacity>
                         </View>
                     )}
+                <ScrollView>
                     <View>
                         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 15, borderTopWidth: 2, borderTopColor: '#212227',}}>
                             <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>

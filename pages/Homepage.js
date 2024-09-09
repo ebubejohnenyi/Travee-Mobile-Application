@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React from "react";
 import { useState} from "react";
-
 export default function Homepage({navigation}){
     const [dropDown, setDropDown] = useState(false);
     const showDropDown = () => {
@@ -39,7 +38,7 @@ export default function Homepage({navigation}){
         overlay:{
             padding: 10,
             position: 'absolute',
-            top: 0,
+            top: 30,
             left: 0,
             width: Dimensions.get('window').width, // Set overlay width to screen width
             height: Dimensions.get('window').height, // Set overlay height to screen height
@@ -70,7 +69,6 @@ export default function Homepage({navigation}){
     })
     return(
         <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
-            <ScrollView style={{flex: 1}}>
                 <View style={styles.header}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                         <View style={{justifyContent: 'center'}}>
@@ -137,7 +135,7 @@ export default function Homepage({navigation}){
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Tour')}>
                             <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 15, marginBottom: 15}}>
                                 <View style={{backgroundColor: '#FF61D3', padding: 15, borderRadius: 100, maxWidth: 50,}}>
                                     <Image
@@ -163,6 +161,7 @@ export default function Homepage({navigation}){
                         </TouchableOpacity>
                     </View>
                 )}
+                <ScrollView style={{flex: 1}}>
                 <View style={{paddingBottom: 90}}>
                     <View>
                         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20, marginBottom: 20, marginLeft: 15, marginRight: 15}}>
@@ -278,13 +277,17 @@ export default function Homepage({navigation}){
                             />
                         </View>
                     </TouchableOpacity>
-                    <View style={{backgroundColor: '#2F68F3', width: 50, height: 50, justifyContent: 'center', alignItems: 'center', borderRadius: 100}}>
-                        <Image
-                        style={{width: 20, height: 20}}
-                        resizeMode="contain" 
-                        source={require('../assets/search.png')}
-                        />
-                    </View>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Map')
+                    }}>
+                        <View style={{backgroundColor: '#2F68F3', width: 50, height: 50, justifyContent: 'center', alignItems: 'center', borderRadius: 100}}>
+                            <Image
+                            style={{width: 20, height: 20}}
+                            resizeMode="contain" 
+                            source={require('../assets/search.png')}
+                            />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </SafeAreaView>
